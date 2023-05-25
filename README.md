@@ -2,6 +2,8 @@
 
 Embeddable GitHub contributions graph
 
+![graph](https://github.com/rwxmad/react-github-contribution-graph/assets/30772868/0f43891c-14df-4f2f-8a61-83d8543c2af2)
+
 ## Installation
 
 ```bash
