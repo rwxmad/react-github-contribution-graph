@@ -15,6 +15,7 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
 
   const fg = theme === 'light' ? '#1F2328' : '#adbac7';
   const bg = theme === 'light' ? '#ebedf0' : '#161b22';
+
   let response: IResponse;
 
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -79,24 +80,25 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
 
   function getMonths() {
     const ms = months.map((el, idx) => {
-      if (el.totalWeeks <= 1) return;
       return (
         <>
           {idx === 0 && <td width="28px"></td>}
-          <td
-            colSpan={el.totalWeeks}
-            key={idx}
-            style={{
-              position: 'relative',
-              fontSize: '12px',
-              textAlign: 'left',
-              padding: '0.125em 0.5em 0.125em 0',
-            }}
-          >
-            <span style={{ position: 'absolute', top: 0, color: fg }}>
-              {el.name}
-            </span>
-          </td>
+          {el.totalWeeks > 1 && (
+            <td
+              colSpan={el.totalWeeks}
+              key={idx}
+              style={{
+                position: 'relative',
+                fontSize: '12px',
+                textAlign: 'left',
+                padding: '0.125em 0.5em 0.125em 0',
+              }}
+            >
+              <span style={{ position: 'absolute', top: 0, color: fg }}>
+                {el.name}
+              </span>
+            </td>
+          )}
         </>
       );
     });
