@@ -2,6 +2,8 @@ import React, { FC, useEffect, useState, CSSProperties } from 'react';
 import { Octokit } from 'octokit';
 import { IDay, IMonth, IResponse } from '../../types';
 
+import './Graph.css';
+
 interface IProps {
   token: string;
   username: string;
@@ -84,19 +86,8 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
         <>
           {idx === 0 && <td width="28px"></td>}
           {el.totalWeeks > 1 && (
-            <td
-              colSpan={el.totalWeeks}
-              key={idx}
-              style={{
-                position: 'relative',
-                fontSize: '12px',
-                textAlign: 'left',
-                padding: '0.125em 0.5em 0.125em 0',
-              }}
-            >
-              <span style={{ position: 'absolute', top: 0, color: fg }}>
-                {el.name}
-              </span>
+            <td colSpan={el.totalWeeks} key={idx} className="graph__month">
+              <span style={{ color: fg }}>{el.name}</span>
             </td>
           )}
         </>
@@ -104,13 +95,6 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
     });
     return ms;
   }
-
-  const cellStyles: CSSProperties = {
-    position: 'relative',
-    width: '10px',
-    height: '10px',
-    borderRadius: '2px',
-  };
 
   function getCells(obj: IDay[]) {
     return obj.map((el, idx) => {
@@ -123,13 +107,10 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
         <>
           {idx === 0 && (
             <>
-              <td style={{ position: 'relative', fontSize: '12px' }}>
+              <td className="graph__weekday">
                 {(el.weekday === 1 || el.weekday === 3 || el.weekday === 5) && (
                   <span
                     style={{
-                      position: 'absolute',
-                      clipPath: 'none',
-                      bottom: '-3px',
                       color: fg,
                     }}
                   >
@@ -138,16 +119,16 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
                 )}
               </td>
               <td
-                className="cell"
+                className="graph__cell"
                 key={idx}
-                style={{ backgroundColor: color, ...cellStyles }}
+                style={{ backgroundColor: color }}
               ></td>
             </>
           )}
           <td
-            className="cell"
+            className="graph__cell"
             key={idx}
-            style={{ backgroundColor: color, ...cellStyles }}
+            style={{ backgroundColor: color }}
           ></td>
         </>
       );
@@ -155,21 +136,14 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
   }
 
   return (
-    <table
-      style={{
-        width: 'max-content',
-        lineHeight: 1,
-        borderSpacing: '3px',
-        borderCollapse: 'separate',
-      }}
-    >
+    <table className="graph">
       <thead>
-        <tr style={{ height: '13px' }}>{getMonths()}</tr>
+        <tr className="graph__header">{getMonths()}</tr>
       </thead>
       <tbody>
         {data.map((el, index) => {
           return (
-            <tr style={{ height: '10px' }} key={index}>
+            <tr className="graph__cells" key={index}>
               {getCells(el)}
             </tr>
           );

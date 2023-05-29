@@ -1,0 +1,44 @@
+.graph {
+  width: max-content;
+  line-height: 1;
+  border-spacing: 3px;
+  border-collapse: separate;
+}
+
+.graph__header {
+  height: 13px;
+}
+
+.graph__month {
+  position: relative;
+  font-size: 12px;
+  text-align: left;
+  padding: 0.125em 0.5em 0.125em 0;
+}
+
+.graph__month span {
+  position: absolute;
+  top: 0;
+}
+
+.graph__weekday {
+  position: relative;
+  font-size: 12px;
+}
+
+.graph__weekday span {
+  position: absolute;
+  clip-path: none;
+  bottom: -3px;
+}
+
+.graph__cells {
+  height: 10px;
+}
+
+.graph__cell {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
