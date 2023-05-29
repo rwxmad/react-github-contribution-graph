@@ -79,6 +79,7 @@ export const Graph: FC<IProps> = ({ token, username, theme = 'light' }) => {
 
   function getMonths() {
     const ms = months.map((el, idx) => {
+      if (el.totalWeeks <= 1) return;
       return (
         <>
           {idx === 0 && <td width="28px"></td>}
