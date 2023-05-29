@@ -1,6 +1,6 @@
 export interface IDay {
   color: string;
-  cotributionCount: number;
+  contributionCount: number;
   contributionLevel: string;
   date: string;
   weekday: number;
