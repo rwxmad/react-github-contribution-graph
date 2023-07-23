@@ -21,6 +21,7 @@
       2,
       {
         "singleQuote": true,
+        "semi": false,
         "quoteProps": "as-needed",
         "trailingComma": "all",
         "endOfLine": "lf",
